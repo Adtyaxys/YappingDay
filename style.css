@@ -1,0 +1,473 @@
+:root {
+    --bg-color: #0d0b14;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-color: #bf55ec;
+    --neon-blue: #00f2fe;
+    --text-color: #f5f5f7;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    background-image: radial-gradient(circle at 10% 20%, rgba(191, 85, 236, 0.15) 0%, transparent 40%),
+                      radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+/* App Container full HP */
+.app-container {
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: 100px; /* Ditambah sedikit agar feed terbawah tidak tertutup menu */
+    position: relative;
+}
+
+/* Header */
+.top-barbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(13, 11, 20, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent-color); }
+.qotd-icon {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    cursor: pointer;
+}
+
+/* Halaman-halaman */
+.page {
+    display: none;
+    padding: 15px;
+    animation: fadeIn 0.4s ease forwards;
+}
+.page.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desain Card Glassmorphism */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    margin: 25px 0;
+}
+.glow-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--accent-color), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(191, 85, 236, 0.3);
+}
+.sub-hero {
+    color: #8a8894;
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+/* Form inputs & boxes */
+.search-container {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.search-container input {
+    background: none;
+    border: none;
+    color: #fff;
+    margin-left: 10px;
+    width: 100%;
+    outline: none;
+}
+
+/* Input Teks & Bio Area Ganti Nama */
+textarea, .input-group input, .setting-item input[type="text"] {
+    width: 100%;
+    background: rgba(0,0,0,0.2) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    color: #fff !important;
+    margin-bottom: 12px !important;
+    outline: none !important;
+    font-size: 0.95rem !important;
+}
+textarea { height: 120px; resize: none; }
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, var(--accent-color), #a841d1);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-secondary {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+.btn-danger {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* --- NAVIGATION TAB (LOGIN & DAFTAR) --- */
+.auth-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
+}
+
+.auth-tab {
+    background: none;
+    border: none;
+    color: #8a8894;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.auth-tab.active {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+.auth-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--neon-blue));
+    border-radius: 3px;
+}
+
+.auth-box form {
+    margin-top: 15px;
+}
+
+/* Card Posting / Quote Component */
+.quote-card {
+    position: relative;
+}
+.quote-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.quote-card-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+.user-info .name { font-weight: 600; font-size: 0.95rem; }
+.user-info .handle { font-size: 0.8rem; color: #8a8894; }
+
+.quote-text-content {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    white-space: pre-wrap;
+    text-align: left;
+}
+.quote-hashtag {
+    color: var(--neon-blue);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Preview uploads inside cards */
+.card-media-img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+.card-media-audio {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* Delete button right action */
+.delete-post-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+}
+
+/* Card Interaction Actions */
+.quote-actions {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 12px;
+    color: #8a8894;
+    font-size: 0.9rem;
+}
+.action-item { cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.action-item.liked { color: #ff4d4d; } /* FIX: Sesuai instruksi menjadi Love Merah */
+
+/* Media Box di Upload & Settings */
+.media-upload-box {
+    background: rgba(0,0,0,0.1);
+    border: 1px dashed var(--glass-border);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.upload-label { cursor: pointer; display: block; color: var(--neon-blue); }
+#image-preview-container img { width: 100%; border-radius: 8px; margin-top: 10px; }
+
+/* --- HALAMAN SETTINGS & INPUT FILE PROFILE --- */
+.setting-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+.setting-item label {
+    font-size: 0.9rem;
+    color: #8a8894;
+    font-weight: 500;
+}
+/* Input Username khusus yang disabled (tidak bisa diedit) */
+.setting-item input[disabled] {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #555 !important;
+    cursor: not-allowed;
+}
+/* Styling input file untuk ganti foto profil */
+.setting-item input[type="file"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed var(--glass-border);
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: 100%;
+}
+.setting-item input[type="file"]::-webkit-file-upload-button {
+    background: var(--accent-color);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 6px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* Profile layout */
+.profile-header {
+    text-align: center;
+}
+.avatar-container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* ==========================================
+   FIX REVISI LAYER NAVIGASI ANTI-FREEZE MOBILE
+   ========================================== */
+.bottom-nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    height: 70px !important;
+    background: rgba(13, 11, 20, 0.9) !important; /* Dibuat lebih solid pekat */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 1px solid var(--glass-border) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 99999 !important; /* Lapisan terdepan mutlak */
+    pointer-events: auto !important;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8a8894;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: 0.3s;
+    flex: 1;
+    height: 100%;
+    justify-content: center;
+}
+.nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
+.nav-item.active { color: var(--accent-color); }
+
+/* Floating Action Button Anti-Tumpuk */
+.fab-btn {
+    position: fixed !important;
+    bottom: 85px !important;
+    right: calc(50% - 240px) !important;
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(45deg, var(--accent-color), var(--neon-blue)) !important;
+    border: none !important;
+    color: white !important;
+    font-size: 1.3rem !important;
+    box-shadow: 0 4px 15px rgba(191, 85, 236, 0.4) !important;
+    cursor: pointer !important;
+    z-index: 100000 !important; /* Selangkah di depan bottom-nav */
+    pointer-events: auto !important;
+}
+@media(max-width: 500px) {
+    .fab-btn { right: 20px !important; }
+}
+
+/* ==========================================
+   FIX MODAL OVERLAY & EXPORT DESIGN
+   ========================================== */
+.modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 999999 !important; /* Di atas segalanya */
+}
+.modal-content {
+    width: 90%;
+    max-width: 400px;
+}
+
+.ig-card-design {
+    background: linear-gradient(135deg, #2b1055, #7597de);
+    padding: 35px 25px;
+    border-radius: 15px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px 0;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+}
+.ig-card-design::before {
+    content: ''; position: absolute; top:-50%; left:-50%; width:200%; height:200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+.ig-logo-watermark { font-size: 0.75rem; opacity: 0.6; letter-spacing: 1px; font-weight: 700; }
+#ig-text { font-size: 1.25rem; font-weight: 600; line-height: 1.4; margin: 20px 0; font-style: italic; }
+.ig-author-box { display: flex; align-items: center; gap: 10px; }
+.ig-author-box img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
+.ig-author-box span { font-size: 0.85rem; font-weight: 500; }
+
+/* Pengunci Kelas Hidden Mutlak */
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Toast */
+.toast {
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9); 
+    color: #000; 
+    padding: 10px 20px;
+    border-radius: 20px; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    z-index: 1000000;
+}
